@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using UsersIndex.Commands;
 
@@ -42,10 +44,62 @@ namespace CoffeeCounter.ViewModel
             return validData;
         }
 
-        private void ExecuteLoginCommand(object obj)
+        private async void ExecuteLoginCommand(object obj)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(UserName))
+            {
+                ErrorMessage = "Username cannot be empty.";
+                return;
+            }
+
+            if (Password == null || Password.Length < 6)
+            {
+                ErrorMessage = "Password must be at least 6 characters long.";
+                return;
+            }
+
+            ErrorMessage = string.Empty;
+
+            bool isAuthenticated = await AuthenticateAsync(UserName, Password);
+
+            if (isAuthenticated)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                Application.Current.MainWindow.Close();
+                IsViewVisible = false;
+            }
+            else
+            {
+                ErrorMessage = "Invalid username or password.";
+            }
         }
+
+        private async Task<bool> AuthenticateAsync(string username, SecureString password)
+        {
+            await Task.Delay(1000);
+
+            return username == "testuser" && ConvertToUnsecureString(password) == "password123";
+        }
+        private string ConvertToUnsecureString(SecureString securePassword)
+        {
+            if (securePassword == null)
+                return null;
+
+            IntPtr bstr = IntPtr.Zero;
+            try
+            {
+                bstr = Marshal.SecureStringToBSTR(securePassword);
+                return Marshal.PtrToStringBSTR(bstr);
+            }
+            finally
+            {
+                if (bstr != IntPtr.Zero)
+                    Marshal.FreeBSTR(bstr);
+            }
+        }
+
         private void ExecuteRecoverPassCommand(string username, string email)
         {
             throw new NotImplementedException();

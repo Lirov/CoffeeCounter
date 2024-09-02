@@ -9,6 +9,8 @@ namespace CoffeeCounter.Model
     public class Coffee
     {
         public Coffee() { }
+
+        public int Id { get; set; }
         public string? Kind { get; set; }
         public string? Volume { get; set; }
         public string? Time { get; set; }

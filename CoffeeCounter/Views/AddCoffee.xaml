@@ -5,26 +5,154 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeCounter.Views"
         mc:Ignorable="d"
-        Title="AddUser" Height="450" Width="400">
+        Title="Add Coffee" Height="450" Width="400">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
     <Grid>
+        <!-- Background -->
+        <Grid Background="#F5F5F5">
+            <!-- Main Container -->
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" Height="380">
+                <!-- Kind Field -->
+                <Grid>
+                    <Label Content="Kind"></Label>
+                </Grid>
+                <Grid Margin="0,0,0,10">
+                    <Label Content="kind" 
+                           Foreground="Gray"
+                           VerticalAlignment="Center"
+                           Margin="5,0,0,0"
+                           HorizontalAlignment="Left"/>
+                    <TextBox x:Name="Kind"
+                             Text="{Binding Kind}"
+                             Height="35" 
+                             Padding="5"
+                             VerticalContentAlignment="Center"
+                             Background="White"
+                             BorderBrush="Gray"
+                             BorderThickness="1"
+                             />
+                    <TextBlock
+                               Foreground="Gray"
+                               IsHitTestVisible="False"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0"
+                               HorizontalAlignment="Left"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Volume"></Label>
+                </Grid>
+                <!-- Volume Field -->
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="118*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="Volume"
+                            
+                                 Height="35" 
+                                 Padding="5"
+                                 VerticalContentAlignment="Center"
+                                 Background="White"
+                                 BorderBrush="Gray"
+                                 BorderThickness="1" Margin="0,0,0,-10" Grid.ColumnSpan="3"/>
+                    <TextBlock
+                               Foreground="Gray"
+                               IsHitTestVisible="False"
+                               VerticalAlignment="Center"
+                               Margin="5,0,0,0"
+                               HorizontalAlignment="Left"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Time"></Label>
+                </Grid>
+                <!-- Time Field -->
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="118*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="Time"
+                 
+                   Height="35" 
+                   Padding="5"
+                   VerticalContentAlignment="Center"
+                   Background="White"
+                   BorderBrush="Gray"
+                   BorderThickness="1" Margin="0,0,0,-10" Grid.ColumnSpan="3"/>
+                    <TextBlock
+                 Foreground="Gray"
+                 IsHitTestVisible="False"
+                 VerticalAlignment="Center"
+                 Margin="5,0,0,0"
+                 HorizontalAlignment="Left"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Date"></Label>
+                </Grid>
+                <!-- Date Field -->
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="118*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="Date"
+                 
+                   Height="35" 
+                   Padding="5"
+                   VerticalContentAlignment="Center"
+                   Background="White"
+                   BorderBrush="Gray"
+                   BorderThickness="1" Margin="0,0,0,-10" Grid.ColumnSpan="3"/>
+                    <TextBlock
+                 Foreground="Gray"
+                 IsHitTestVisible="False"
+                 VerticalAlignment="Center"
+                 Margin="5,0,0,0"
+                 HorizontalAlignment="Left"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Location"></Label>
+                </Grid>
+                <!-- Volume Field -->
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="118*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="Location"
+               
+                   Height="35" 
+                   Padding="5"
+                   VerticalContentAlignment="Center"
+                   Background="White"
+                   BorderBrush="Gray"
+                   BorderThickness="1" Margin="0,0,0,-10" Grid.ColumnSpan="3"/>
+                    <TextBlock
+                 Foreground="Gray"
+                 IsHitTestVisible="False"
+                 VerticalAlignment="Center"
+                 Margin="5,0,0,0"
+                 HorizontalAlignment="Left"/>
+                </Grid>
+                <!-- Add Button -->
+                <Button x:Name="AddButton"
+                        Content="Add" 
+                        Height="30"
+                        Background="#0078D4" 
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Margin="250,20,0,0"
+                        Click="AddCoffee_Click" Width="60"/>
 
-        <Label Content="Kind" Margin="25" VerticalAlignment="Top" HorizontalAlignment="left"/>
-        <TextBox  Height="30" Text="{Binding Kind}" Width="200" Margin="25,50" VerticalAlignment="Top" HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
-
-        <Label Content="Volume" Margin="25,100" VerticalAlignment="Top" HorizontalAlignment="left"/>
-        <TextBox  Height="30" Width="200" Text="{Binding Volume}" Margin="25,125" VerticalAlignment="Top" HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
-
-        <Label Content="Time" Margin="25,170,0,0" VerticalAlignment="Top" HorizontalAlignment="left"/>
-        <TextBox  Height="30" Width="200" Text="{Binding Time}" Margin="25,200,0,0" VerticalAlignment="Top" HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
-
-        <Label Content="Date" Margin="25,260,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBox  Height="30" Width="200" Text="{Binding Date}" Margin="25,287,0,0" VerticalAlignment="Top" HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
-
-        <Label Content="Location" Margin="25,340,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBox  Height="30" Width="200" Text="{Binding Location}" Margin="25,365,0,0" VerticalAlignment="Top" HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
-
-
-        <Button Height="30" Command="{Binding AddCoffeeCommand}" Content="Add" Width="70"  VerticalContentAlignment="Center" Padding="5" Margin="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0" />
-
+                <!-- Reset Password Link -->
+                <!-- back Link -->
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

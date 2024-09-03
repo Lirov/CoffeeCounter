@@ -67,5 +67,13 @@ namespace CoffeeCounter.Views
                 sqlConnection.Close();
             }
         }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            Register register = new Register();
+            this.Close();
+            register.Show();
+
+        }
     }
 }

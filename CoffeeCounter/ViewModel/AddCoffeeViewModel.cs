@@ -1,8 +1,8 @@
-﻿using CoffeeCounter.Model;
+﻿using CoffeeCounter.Commands;
+using CoffeeCounter.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using UsersIndex.Commands;
 
 namespace CoffeeCounter.ViewModel
 {

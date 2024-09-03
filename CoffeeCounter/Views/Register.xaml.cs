@@ -53,5 +53,12 @@ namespace CoffeeCounter.Views
                 throw;
             }
         }
+        private void BackLink_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+            var loginWindow = new Login(); 
+            loginWindow.Show();
+            this.Close();
+        }
     }
 }

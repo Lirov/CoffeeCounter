@@ -35,7 +35,6 @@
                            Margin="5,0,0,0"
                            HorizontalAlignment="Left"/>
                     <TextBox x:Name="UsernameTextBox"
-                             Text="{Binding Username}"
                              Height="35" 
                              Padding="5"
                              VerticalContentAlignment="Center"
@@ -105,7 +104,8 @@
                            FontStyle="Italic"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,0"
-                            Cursor="Hand">
+                            Cursor="Hand"
+                    MouseDown="BackLink_MouseDown">
                             
                     <TextBlock.Triggers>
                         <EventTrigger RoutedEvent="TextBlock.MouseDown">

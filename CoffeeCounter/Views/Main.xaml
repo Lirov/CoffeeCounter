@@ -10,9 +10,20 @@
 
     <Grid Background="#F5F5F5">
         <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,25,0">
+                <TextBlock Text="Logged in as:" VerticalAlignment="Center" Margin="0,0,25,0"/>
+                <TextBlock Name="UserNameTextBlock" VerticalAlignment="Center" FontWeight="Bold"/>
+            </StackPanel>
+            <Label Content="Search" FontSize="12" FontWeight="Bold" Margin="77,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
             <Button Height="30" CommandParameter="{x:Reference Name= mainwindow}" Command="{Binding ShowWindowCommand}"  Content="Add Coffee" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0" Click="AddCoffee_Click" />
-            <ListView Name="CoffeeList" ItemsSource="{Binding Coffee}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0">
+            <Button Height="30" CommandParameter="{x:Reference Name= mainwindow}" Command="{Binding ShowWindowCommand}"  Content="Log Out" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="702,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#E0E0E1" Click="LogOff_Click" />
+            <ListView Name="CoffeeList" ItemsSource="{Binding Coffee}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0" MouseDoubleClick="CoffeeList_MouseDoubleClick">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete" Click="DeleteMenuItem_Click"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Kind}" Header="Kind"/>

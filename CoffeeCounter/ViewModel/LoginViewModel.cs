@@ -2,7 +2,7 @@
 using System.Security;
 using System.Windows;
 using System.Windows.Input;
-using UsersIndex.Commands;
+using CoffeeCounter.Commands;
 
 namespace CoffeeCounter.ViewModel
 {

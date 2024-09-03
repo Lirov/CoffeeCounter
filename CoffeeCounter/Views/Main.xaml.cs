@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CoffeeCounter.Views
 {
@@ -24,10 +25,10 @@ namespace CoffeeCounter.Views
     {
         public Main()
         {
+
             InitializeComponent();
             LoadCoffeeData();
         }
-
         public void LoadCoffeeData()
         {
             // This method should reload the coffee data from the database
@@ -36,37 +37,65 @@ namespace CoffeeCounter.Views
                 CoffeeList.ItemsSource = dbContext.Coffee.ToList();
             }
         }
-
-        //private void AddCoffee_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AddCoffee addCoffeeWindow = new AddCoffee();
-
-        //    addCoffeeWindow.DataContext = new AddCoffeeViewModel();
-
-        //    // Show the AddCoffee window
-        //    addCoffeeWindow.Show();
-        //}
-
         private void AddCoffee_Click(object sender, RoutedEventArgs e)
         {
-            // Open the AddCoffee window and handle closing it
             AddCoffee addCoffeeWindow = new AddCoffee();
-            addCoffeeWindow.Closed += (s, args) => LoadCoffeeData(); // Refresh data on window close
+            addCoffeeWindow.Closed += (s, args) => LoadCoffeeData();
             addCoffeeWindow.Show();
         }
-
         private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             CoffeeList.Items.Filter = FilterMethod;
         }
+        private void LogOff_Click(object sender, RoutedEventArgs e)
+        {
+            var loginWindow = new Login();
+            loginWindow.Show();
+            this.Close();
 
+        }
         private bool FilterMethod(object obj)
         {
-            var coffee = (Model.Coffee)obj;
+            var coffee = (Data.Coffee)obj;
 
             return coffee.Kind.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
+        }
+        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCoffee = CoffeeList.SelectedItem as Data.Coffee;
 
+            if (selectedCoffee != null)
+            {
+                var result = MessageBox.Show("Are you sure you want to delete this record?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    using (var dbContext = new CoffeeDbContext())
+                    {
+                        var coffeeToRemove = dbContext.Coffee.Find(selectedCoffee.Id);
+                        if (coffeeToRemove != null)
+                        {
+                            dbContext.Coffee.Remove(coffeeToRemove);
+                            dbContext.SaveChanges();
+                        }
+                    }
+
+                    // Refresh the data
+                    LoadCoffeeData();
+                }
+            }
+        }
+        private void CoffeeList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedCoffee = CoffeeList.SelectedItem as Data.Coffee;
+            if (selectedCoffee != null)
+            {
+                EditCoffee editWindow = new EditCoffee();
+                var viewModel = new EditCoffeeViewModel(new CoffeeDbContext(), selectedCoffee);
+                editWindow.DataContext = viewModel;
+                editWindow.ShowDialog(); // Use ShowDialog() to open the window as a modal
+                LoadCoffeeData();
+            }
         }
     }
 }

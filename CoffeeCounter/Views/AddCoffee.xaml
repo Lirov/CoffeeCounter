@@ -51,7 +51,7 @@
                         <ColumnDefinition Width="118*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="Volume"
-                            
+                                 Text="{Binding Volume}"
                                  Height="35" 
                                  Padding="5"
                                  VerticalContentAlignment="Center"
@@ -76,7 +76,7 @@
                         <ColumnDefinition Width="118*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="Time"
-                 
+                 Text="{Binding Time}"
                    Height="35" 
                    Padding="5"
                    VerticalContentAlignment="Center"
@@ -101,7 +101,7 @@
                         <ColumnDefinition Width="118*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="Date"
-                 
+                 Text="{Binding Date}"
                    Height="35" 
                    Padding="5"
                    VerticalContentAlignment="Center"
@@ -126,7 +126,7 @@
                         <ColumnDefinition Width="118*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="Location"
-               
+               Text="{Binding Location}"
                    Height="35" 
                    Padding="5"
                    VerticalContentAlignment="Center"
@@ -149,9 +149,6 @@
                         FontWeight="Bold"
                         Margin="250,20,0,0"
                         Click="AddCoffee_Click" Width="60"/>
-
-                <!-- Reset Password Link -->
-                <!-- back Link -->
             </StackPanel>
         </Grid>
     </Grid>

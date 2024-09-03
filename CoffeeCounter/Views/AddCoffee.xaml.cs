@@ -1,4 +1,5 @@
-﻿using CoffeeCounter.ViewModel;
+﻿using CoffeeCounter.Data;
+using CoffeeCounter.ViewModel;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -32,43 +33,39 @@ namespace CoffeeCounter.Views
         {
             try
             {
-                // Ensure database connection string is correct and working
-                using (SqlConnection sqlConnection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CoffeeDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"))
+                var viewModel = this.DataContext as AddCoffeeViewModel;
+
+                if (viewModel != null)
                 {
-                    sqlConnection.Open();
-
-                    // Prepare the SQL command
-                    string query = "INSERT INTO Coffee (kind, volume, time, date, location) VALUES (@kind, @volume, @time, @date, @location)";
-                    using (SqlCommand cmd = new SqlCommand(query, sqlConnection))
+                    var newCoffee = new Coffee
                     {
-                        // Add parameters with appropriate values
-                        cmd.Parameters.AddWithValue("@kind", Kind.Text ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@volume", Volume.Text ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@time", Time.Text ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@date", Date.Text ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@location", Location.Text ?? (object)DBNull.Value);
+                        Kind = viewModel.Kind,
+                        Volume = viewModel.Volume,
+                        Time = viewModel.Time,
+                        Date = viewModel.Date,
+                        Location = viewModel.Location
+                    };
 
-                        // Execute the command
-                        cmd.ExecuteNonQuery();
+                    using (var dbContext = new CoffeeDbContext())
+                    {
+                        dbContext.Coffee.Add(newCoffee);
+                        dbContext.SaveChanges();
                     }
+
+                    MessageBox.Show("Coffee added successfully.");
+
+                    viewModel.Kind = "";
+                    viewModel.Volume = "";
+                    viewModel.Time = "";
+                    viewModel.Date = "";
+                    viewModel.Location = "";
+
+                    this.Close();
+
                 }
-
-                MessageBox.Show("Coffee added successfully.");
-
-                // Clear the text fields
-                Kind.Text = "";
-                Volume.Text = "";
-                Time.Text = "";
-                Date.Text = "";
-
-                // Close current window and open main window
-                this.Close();
-                Main main = new Main();
-                main.Show();
             }
             catch (Exception ex)
             {
-                // Log the exception and provide feedback to the user
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

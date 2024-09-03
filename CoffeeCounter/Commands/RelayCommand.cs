@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace UsersIndex.Commands
+namespace CoffeeCounter.Commands
 {
     public class RelayCommand : ICommand
     {

@@ -11,7 +11,7 @@
     <Grid Background="#F5F5F5">
         <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,25,0">
-                <TextBlock Text="Logged in as:" VerticalAlignment="Center" Margin="0,0,25,0"/>
+                <TextBlock Text="Welcome:" VerticalAlignment="Center" Margin="0,0,10,0"/>
                 <TextBlock Name="UserNameTextBlock" VerticalAlignment="Center" FontWeight="Bold"/>
             </StackPanel>
             <Label Content="Search" FontSize="12" FontWeight="Bold" Margin="77,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>

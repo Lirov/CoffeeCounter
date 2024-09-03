@@ -22,6 +22,7 @@ namespace CoffeeCounter.Views
     /// </summary>
     public partial class Login : Window
     {
+        public static string LoggedInUserName { get; private set; }
         public Login()
         {
             InitializeComponent();
@@ -47,6 +48,7 @@ namespace CoffeeCounter.Views
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     if (count == 1)
                     {
+                        LoggedInUserName = UsernameTextBox.Text;
                         Main mainWindow = new Main();
                         mainWindow.Show();
                         this.Close();
@@ -74,6 +76,10 @@ namespace CoffeeCounter.Views
             this.Close();
             register.Show();
 
+        }
+        private string GetUserName()
+        { 
+            return LoggedInUserName;
         }
     }
 }

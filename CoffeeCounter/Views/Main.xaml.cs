@@ -28,6 +28,9 @@ namespace CoffeeCounter.Views
 
             InitializeComponent();
             LoadCoffeeData();
+
+            UserNameTextBlock.Text = $"{Login.LoggedInUserName}";
+
         }
         public void LoadCoffeeData()
         {

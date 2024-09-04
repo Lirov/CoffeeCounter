@@ -103,17 +103,17 @@ namespace CoffeeCounter.ViewModel
         }
 
         private void Save(object obj)
-        {
-            _coffee.Kind = Kind;
-            _coffee.Volume = Volume;
-            _coffee.Time = Time;
-            _coffee.Date = Date;
-            _coffee.Location = Location;
-            _dbContext.Update(_coffee);
-            _dbContext.SaveChanges();
+        {          
+                _coffee.Kind = Kind;
+                _coffee.Volume = Volume;
+                _coffee.Time = Time;
+                _coffee.Date = Date;
+                _coffee.Location = Location;
+                _dbContext.Update(_coffee);
+                _dbContext.SaveChanges();
 
-            var window = Application.Current.Windows.OfType<EditCoffee>().FirstOrDefault();
-            window?.Close();
+                var window = Application.Current.Windows.OfType<EditCoffee>().FirstOrDefault();
+                window?.Close();
         }
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

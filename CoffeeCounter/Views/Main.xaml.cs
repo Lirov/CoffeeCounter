@@ -100,5 +100,6 @@ namespace CoffeeCounter.Views
                 LoadCoffeeData();
             }
         }
+
     }
 }

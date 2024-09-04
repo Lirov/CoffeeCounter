@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeCounter.Views"
         mc:Ignorable="d"
-        Title="Register" Height="450" Width="400">
+        Title="Register" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
@@ -79,31 +80,13 @@
                         Margin="0,30,0,0"
                         Click="RegisterButton_Click"/>
 
-                <!-- Reset Password Link -->
-                <TextBlock 
-                    Text="Forgot your password?" 
-                           Foreground="#0078D4"
-                           FontStyle="Italic"
-                           HorizontalAlignment="Center"
-                           Margin="0,10,0,0"
-                    Cursor="Hand">
-                    <TextBlock.Triggers>
-                        <EventTrigger RoutedEvent="TextBlock.MouseDown">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <!-- Add your reset password logic here -->
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </TextBlock.Triggers>
-                </TextBlock>
                 <!-- back Link -->
                 <TextBlock 
                     Text="Back" 
                            Foreground="#0078D4"
                            FontStyle="Italic"
                            HorizontalAlignment="Center"
-                           Margin="0,0,0,0"
+                           Margin="0,10,0,0"
                             Cursor="Hand"
                     MouseDown="BackLink_MouseDown">
                             

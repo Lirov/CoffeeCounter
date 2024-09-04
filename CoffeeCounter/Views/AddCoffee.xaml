@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeCounter.Views"
         mc:Ignorable="d"
-        Title="Add Coffee" Height="450" Width="400">
+        Title="Add Coffee" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>

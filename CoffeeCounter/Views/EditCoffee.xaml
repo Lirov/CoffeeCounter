@@ -3,105 +3,113 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CoffeeCounter.Views"
         mc:Ignorable="d"
-        Title="Edit Coffee" Height="450" Width="400">
-    <Grid>
-        <Grid Background="#F5F5F5">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" Height="421">
+        Title="Edit Coffee" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#F5F5F5">
+        <!-- Main Container with Padding -->
+        <Border Background="White" CornerRadius="10" Padding="20" 
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="350" Height="Auto" BorderBrush="LightGray" BorderThickness="1">
+
+            <StackPanel>
                 <!-- Kind Field -->
-                <Grid>
-                    <Label Content="Kind"></Label>
-                </Grid>
-                <Grid Margin="0,0,0,10">
-                    <Label Content="Kind" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="KindTextBox"
-                             Text="{Binding Kind, UpdateSourceTrigger=PropertyChanged}"
-                             Height="35"
+                <Grid Margin="0,10,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Kind" VerticalAlignment="Center" Grid.Column="0" Margin="-10,0,20,0"/>
+                    <TextBox x:Name="KindTextBox" 
+                             Text="{Binding Kind, UpdateSourceTrigger=PropertyChanged}" 
+                             Height="35" 
                              Padding="5"
                              VerticalContentAlignment="Center"
-                             Background="White"
-                             BorderBrush="Gray"
-                             BorderThickness="1"/>
+                             Background="#f7f7f7" 
+                             BorderBrush="LightGray" 
+                             BorderThickness="1" Grid.Column="1" Margin="10,0,0,0"/>
                 </Grid>
 
                 <!-- Volume Field -->
-                <Grid>
-                    <Label Content="Volume"></Label>
-                </Grid>
-                <Grid Margin="0,0,0,10">
-                    <Label Content="Volume" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="VolumeTextBox"
-                             Text="{Binding Volume, UpdateSourceTrigger=PropertyChanged}"
-                             Height="35"
+                <Grid Margin="0,10,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="60.03"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Volume" VerticalAlignment="Center" Grid.Column="0" Margin="-10,0,20,0" Height="25"/>
+                    <TextBox x:Name="VolumeTextBox" 
+                             Text="{Binding Volume, UpdateSourceTrigger=PropertyChanged}" 
                              Padding="5"
                              VerticalContentAlignment="Center"
-                             Background="White"
-                             BorderBrush="Gray"
-                             BorderThickness="1"/>
+                             Background="#f7f7f7" 
+                             BorderBrush="LightGray" 
+                             BorderThickness="1" Grid.ColumnSpan="2" Margin="55,0,0,0"/>
                 </Grid>
 
                 <!-- Time Field -->
-                <Grid>
-                    <Label Content="Time"></Label>
-                </Grid>
-                <Grid Margin="0,0,0,10">
-                    <Label Content="Time" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="TimeTextBox"
-                             Text="{Binding Time, UpdateSourceTrigger=PropertyChanged}"
-                             Height="35"
+                <Grid Margin="0,10,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Time" VerticalAlignment="Center" Grid.Column="0" Margin="-10,0,20,0"/>
+                    <TextBox x:Name="TimeTextBox" 
+                             Text="{Binding Time, UpdateSourceTrigger=PropertyChanged}" 
+                             Height="35" 
                              Padding="5"
                              VerticalContentAlignment="Center"
-                             Background="White"
-                             BorderBrush="Gray"
-                             BorderThickness="1"/>
+                             Background="#f7f7f7" 
+                             BorderBrush="LightGray" 
+                             BorderThickness="1" Grid.Column="1" Margin="10,0,0,0"/>
                 </Grid>
 
                 <!-- Date Field -->
-                <Grid>
-                    <Label Content="Data"></Label>
-                </Grid>
-                <Grid Margin="0,0,0,10">
-                    <Label Content="Date" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="DateTextBox"
-                             Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}"
-                             Height="35"
+                <Grid Margin="0,10,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Date" VerticalAlignment="Center" Grid.Column="0" Margin="-10,0,20,0"/>
+                    <TextBox x:Name="DateTextBox" 
+                             Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}" 
+                             Height="35" 
                              Padding="5"
                              VerticalContentAlignment="Center"
-                             Background="White"
-                             BorderBrush="Gray"
-                             BorderThickness="1"/>
+                             Background="#f7f7f7" 
+                             BorderBrush="LightGray" 
+                             BorderThickness="1" Grid.Column="1" Margin="10,0,0,0"/>
                 </Grid>
 
                 <!-- Location Field -->
-                <Grid>
-                    <Label Content="Location"></Label>
-                </Grid>
-                <Grid Margin="0,0,0,20">
-                    <Label Content="Location" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="LocationTextBox"
-                             Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}"
-                             Height="35"
+                <Grid Margin="0,10,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Location" VerticalAlignment="Center" Grid.Column="0" Margin="-10,0,20,0"/>
+                    <TextBox x:Name="LocationTextBox" 
+                             Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}" 
+                             Height="35" 
                              Padding="5"
                              VerticalContentAlignment="Center"
-                             Background="White"
-                             BorderBrush="Gray"
-                             BorderThickness="1"/>
+                             Background="#f7f7f7" 
+                             BorderBrush="LightGray" 
+                             BorderThickness="1" Grid.ColumnSpan="2" Margin="55,0,0,0"/>
                 </Grid>
 
                 <!-- Edit Button -->
                 <Button x:Name="EditButton"
-                        Content="Edit"
-                        Height="30"
+                        Content="Save"
+                        Height="40"
                         Background="#0078D4"
                         Foreground="White"
                         FontWeight="Bold"
-                        Margin="0,10,20,0"
-                         Command="{Binding SaveCommand}"
-                        Width="60"
-                        HorizontalAlignment="Right"/>
-
+                        Width="100"
+                        HorizontalAlignment="Center"
+                        Command="{Binding SaveCommand}"
+                        BorderThickness="0"/>
             </StackPanel>
-        </Grid>
+        </Border>
     </Grid>
 </Window>

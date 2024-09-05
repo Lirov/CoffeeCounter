@@ -3,93 +3,102 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CoffeeCounter.Views"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="400"
-        WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
-    </Window.Resources>
-    <Window.Visibility>
-        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
-    </Window.Visibility>
+        Title="Login" Height="470" Width="400"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+
     <Grid>
         <!-- Background -->
-        <Grid Background="#F5F5F5">
-            <!-- Main Container -->
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" Height="320">
-                <!-- Welcoming Phrase -->
-                <TextBlock Text="Welcome Back!" 
-                           FontSize="24" 
-                           FontWeight="Bold" 
-                           Margin="0,0,0,20" 
-                           HorizontalAlignment="Center" />
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#3A7BD5" Offset="0.0"/>
+                <GradientStop Color="#00d2ff" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 
-                <!-- Username Field -->
-                <Grid>
-                    <Label Content="USERNAME"></Label>
-                </Grid>
-                <Grid Margin="0,0,0,10">
-                    <Label Content="Username" 
-                           Foreground="Gray"
-                           VerticalAlignment="Center"
-                           Margin="5,0,0,0"
-                           HorizontalAlignment="Left"/>
-                    <TextBox x:Name="UsernameTextBox"
-                             Height="35" 
-                             Padding="5"
+        <!-- Main Panel with Shadow Effect -->
+        <Border Background="White" CornerRadius="8" Padding="20" 
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="320" Height="400" Opacity="0.95">
+            <StackPanel>
+                <!-- Title -->
+                <TextBlock Text="Login" 
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="#333"
+                           HorizontalAlignment="Center" 
+                           Margin="0,10,0,30"/>
+
+                <!-- Username Label -->
+                <TextBlock Text="Username" 
+                           FontSize="14" 
+                           FontWeight="SemiBold" 
+                           Foreground="#333"
+                           Margin="0,0,0,5"/>
+
+                <!-- Username Input -->
+                <TextBox x:Name="UsernameTextBox"
+                         Height="40" 
+                         Background="#f7f7f7" 
+                         BorderBrush="Gray" 
+                         Padding="8"
+                         VerticalContentAlignment="Center"
+                         FontSize="14"/>
+
+                <!-- Spacing -->
+                <Rectangle Height="10" Fill="Transparent"/>
+
+                <!-- Password Label -->
+                <TextBlock Text="Password" 
+                           FontSize="14" 
+                           FontWeight="SemiBold" 
+                           Foreground="#333"
+                           Margin="0,0,0,5"/>
+
+                <!-- Password Input -->
+                <PasswordBox x:Name="PasswordBox"
+                             Height="40" 
+                             Background="#f7f7f7" 
+                             BorderBrush="Gray" 
+                             Padding="8"
                              VerticalContentAlignment="Center"
-                             Background="White"
-                             BorderBrush="Gray"
-                             BorderThickness="1"
-                             />
-                    <TextBlock
-                               Foreground="Gray"
-                               IsHitTestVisible="False"
-                               VerticalAlignment="Center"
-                               Margin="5,0,0,0"
-                               HorizontalAlignment="Left"/>
-                </Grid>
-                <Grid>
-                    <Label Content="PASSWORD"></Label>
-                </Grid>
-                <!-- Password Field -->
-                <Grid Margin="0,0,0,10">
-                    <PasswordBox x:Name="PasswordBox"
-                                 Height="35" 
-                                 Padding="5"
-                                 VerticalContentAlignment="Center"
-                                 Background="White"
-                                 BorderBrush="Gray"
-                                 BorderThickness="1" Margin="0,0,0,-10"/>
-                    <TextBlock
-                               Foreground="Gray"
-                               IsHitTestVisible="False"
-                               VerticalAlignment="Center"
-                               Margin="5,0,0,0"
-                               HorizontalAlignment="Left"/>
-                </Grid>
+                             FontSize="14"/>
+
+                <!-- Spacing -->
+                <Rectangle Height="20" Fill="Transparent"/>
 
                 <!-- Login Button -->
                 <Button x:Name="LoginButton"
                         Content="Login" 
-                        Height="35"
+                        Height="40" 
                         Background="#0078D4" 
                         Foreground="White"
                         FontWeight="Bold"
-                        Margin="0,20,0,0"
+                        FontSize="16"
+                        HorizontalAlignment="Stretch"
+                        BorderThickness="0"
+                        Margin="0,10,0,0"
+                        Cursor="Hand"
+                        VerticalAlignment="Bottom"
                         Click="LoginButton_Click"/>
-                
+
                 <!-- Register Button -->
                 <Button x:Name="RegisterButton"
                         Content="Register" 
-                        Height="35"
-                        Background="#0078D4" 
-                        Foreground="White"
+                        Height="40" 
+                        Background="Transparent"
+                        BorderBrush="#0078D4" 
+                        Foreground="#0078D4" 
+                        BorderThickness="2"
                         FontWeight="Bold"
+                        FontSize="16"
+                        HorizontalAlignment="Stretch"
+                        Cursor="Hand"
+                        VerticalAlignment="Bottom"
                         Margin="0,10,0,0"
                         Click="RegisterButton_Click"/>
             </StackPanel>
-        </Grid>
+        </Border>
     </Grid>
 </Window>

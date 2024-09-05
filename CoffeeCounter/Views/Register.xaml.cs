@@ -1,5 +1,6 @@
 ﻿using CoffeeCounter.ViewModel;
 using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,29 +29,64 @@ namespace CoffeeCounter.Views
             this.DataContext = viewModel;
         }
 
+        //private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        SqlConnection sqlConnection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CoffeeDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        //        sqlConnection.Open();
+        //        string query = "INSERT INTO Users (username, password) VALUES (@username, @password)";
+        //        SqlCommand cmd = new SqlCommand(query, sqlConnection);
+
+        //        cmd.Parameters.AddWithValue("@username", UsernameTextBox.Text);
+        //        cmd.Parameters.AddWithValue("@password", PasswordBox.Password);
+        //        cmd.ExecuteNonQuery();
+        //        MessageBox.Show("User registered successfully");
+        //        UsernameTextBox.Text = "";
+        //        PasswordBox.Password = "";
+        //        Main main = new Main();
+        //        this.Close();
+        //        main.Show();
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
+
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                SqlConnection sqlConnection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CoffeeDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-                sqlConnection.Open();
-                string query = "INSERT INTO Users (username, password) VALUES (@username, @password)";
-                SqlCommand cmd = new SqlCommand(query, sqlConnection);
+                // Replace the connection string with your MariaDB connection details
+                string connectionString = "Server=localhost;Port=3306;Database=CoffeeDB;User=root;";
 
-                cmd.Parameters.AddWithValue("@username", UsernameTextBox.Text);
-                cmd.Parameters.AddWithValue("@password", PasswordBox.Password);
-                cmd.ExecuteNonQuery();
+                using (MySqlConnection mySqlConnection = new MySqlConnection(connectionString))
+                {
+                    mySqlConnection.Open();
+
+                    string query = "INSERT INTO Users (username, password) VALUES (@username, @password)";
+                    using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection))
+                    {
+                        cmd.Parameters.AddWithValue("@username", UsernameTextBox.Text);
+                        cmd.Parameters.AddWithValue("@password", PasswordBox.Password);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
                 MessageBox.Show("User registered successfully");
                 UsernameTextBox.Text = "";
                 PasswordBox.Password = "";
+
+                // Open the main window
                 Main main = new Main();
                 this.Close();
                 main.Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
         private void BackLink_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

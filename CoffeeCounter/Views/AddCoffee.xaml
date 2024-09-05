@@ -3,154 +3,81 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CoffeeCounter.Views"
         mc:Ignorable="d"
         Title="Add Coffee" Height="450" Width="400"
-        WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
-    </Window.Resources>
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5">
+
     <Grid>
-        <!-- Background -->
-        <Grid Background="#F5F5F5">
-            <!-- Main Container -->
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" Height="380">
+        <!-- Main Container with Padding -->
+        <Border Background="White" CornerRadius="10" Padding="20" 
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="350" Height="400" Opacity="0.95" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Height="370" VerticalAlignment="Center">
                 <!-- Kind Field -->
-                <Grid>
-                    <Label Content="Kind"></Label>
-                </Grid>
-                <Grid Margin="0,0,0,10">
-                    <Label Content="kind" 
-                           Foreground="Gray"
-                           VerticalAlignment="Center"
-                           Margin="5,0,0,0"
-                           HorizontalAlignment="Left"/>
-                    <TextBox x:Name="Kind"
-                             Text="{Binding Kind}"
-                             Height="35" 
-                             Padding="5"
-                             VerticalContentAlignment="Center"
-                             Background="White"
-                             BorderBrush="Gray"
-                             BorderThickness="1"
-                             />
-                    <TextBlock
-                               Foreground="Gray"
-                               IsHitTestVisible="False"
-                               VerticalAlignment="Center"
-                               Margin="5,0,0,0"
-                               HorizontalAlignment="Left"/>
-                </Grid>
-                <Grid>
-                    <Label Content="Volume"></Label>
-                </Grid>
+                <!-- Kind Field -->
+                <!-- Kind Field -->
+                <Label Content="Kind" FontWeight="Bold"/>
+                <TextBox x:Name="Kind" 
+                         Text="{Binding Kind}"
+                         Height="35" 
+                         Padding="5"
+                         Background="#f7f7f7" 
+                         BorderBrush="LightGray" 
+                         BorderThickness="1"/>
+
                 <!-- Volume Field -->
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="118*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="Volume"
-                                 Text="{Binding Volume}"
-                                 Height="35" 
-                                 Padding="5"
-                                 VerticalContentAlignment="Center"
-                                 Background="White"
-                                 BorderBrush="Gray"
-                                 BorderThickness="1" Margin="0,0,0,-10" Grid.ColumnSpan="3"/>
-                    <TextBlock
-                               Foreground="Gray"
-                               IsHitTestVisible="False"
-                               VerticalAlignment="Center"
-                               Margin="5,0,0,0"
-                               HorizontalAlignment="Left"/>
-                </Grid>
-                <Grid>
-                    <Label Content="Time"></Label>
-                </Grid>
+                <Label Content="Volume" FontWeight="Bold" Margin="0,0,0,5"/>
+                <TextBox x:Name="Volume" 
+                         Text="{Binding Volume}" 
+                         Height="35" 
+                         Padding="5"
+                         Background="#f7f7f7" 
+                         BorderBrush="LightGray" 
+                         BorderThickness="1"/>
+
                 <!-- Time Field -->
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="118*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="Time"
-                 Text="{Binding Time}"
-                   Height="35" 
-                   Padding="5"
-                   VerticalContentAlignment="Center"
-                   Background="White"
-                   BorderBrush="Gray"
-                   BorderThickness="1" Margin="0,0,0,-10" Grid.ColumnSpan="3"/>
-                    <TextBlock
-                 Foreground="Gray"
-                 IsHitTestVisible="False"
-                 VerticalAlignment="Center"
-                 Margin="5,0,0,0"
-                 HorizontalAlignment="Left"/>
-                </Grid>
-                <Grid>
-                    <Label Content="Date"></Label>
-                </Grid>
+                <Label Content="Time" FontWeight="Bold" Margin="0,0,0,5"/>
+                <TextBox x:Name="Time" 
+                         Text="{Binding Time}" 
+                         Height="35" 
+                         Padding="5"
+                         Background="#f7f7f7" 
+                         BorderBrush="LightGray" 
+                         BorderThickness="1"/>
+
                 <!-- Date Field -->
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="118*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="Date"
-                 Text="{Binding Date}"
-                   Height="35" 
-                   Padding="5"
-                   VerticalContentAlignment="Center"
-                   Background="White"
-                   BorderBrush="Gray"
-                   BorderThickness="1" Margin="0,0,0,-10" Grid.ColumnSpan="3"/>
-                    <TextBlock
-                 Foreground="Gray"
-                 IsHitTestVisible="False"
-                 VerticalAlignment="Center"
-                 Margin="5,0,0,0"
-                 HorizontalAlignment="Left"/>
-                </Grid>
-                <Grid>
-                    <Label Content="Location"></Label>
-                </Grid>
-                <!-- Volume Field -->
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="118*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="Location"
-               Text="{Binding Location}"
-                   Height="35" 
-                   Padding="5"
-                   VerticalContentAlignment="Center"
-                   Background="White"
-                   BorderBrush="Gray"
-                   BorderThickness="1" Margin="0,0,0,-10" Grid.ColumnSpan="3"/>
-                    <TextBlock
-                 Foreground="Gray"
-                 IsHitTestVisible="False"
-                 VerticalAlignment="Center"
-                 Margin="5,0,0,0"
-                 HorizontalAlignment="Left"/>
-                </Grid>
-                <!-- Add Button -->
-                <Button x:Name="AddButton"
-                        Content="Add" 
-                        Height="30"
+                <Label Content="Date" FontWeight="Bold" Margin="0,0,0,5"/>
+                <TextBox x:Name="Date" 
+                         Text="{Binding Date}" 
+                         Height="35" 
+                         Padding="5"
+                         Background="#f7f7f7" 
+                         BorderBrush="LightGray" 
+                         BorderThickness="1"/>
+
+                <!-- Location Field -->
+                <Label Content="Location" FontWeight="Bold" Margin="0,0,0,5"/>
+                <TextBox x:Name="Location" 
+                         Text="{Binding Location}" 
+                         Height="35" 
+                         Padding="5"
+                         Background="#f7f7f7" 
+                         BorderBrush="LightGray" 
+                         BorderThickness="1"/>
+                <Button x:Name="AddButton" 
+                        Content="Add Coffee" 
+                        Height="24"
+                        Margin="15"
                         Background="#0078D4" 
-                        Foreground="White"
+                        Foreground="White" 
                         FontWeight="Bold"
-                        Margin="250,20,0,0"
-                        Click="AddCoffee_Click" Width="60"/>
+                        Width="120"
+                        BorderThickness="0"
+                        Click="AddCoffee_Click" RenderTransformOrigin="0.492,0.205"/>
+
+                <!-- Add Button -->
             </StackPanel>
-        </Grid>
+        </Border>
     </Grid>
 </Window>

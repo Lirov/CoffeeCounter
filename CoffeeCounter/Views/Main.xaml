@@ -3,39 +3,62 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CoffeeCounter.Views"    
         mc:Ignorable="d"
         Title="Main" Height="650" Width="1000"
         WindowStartupLocation="CenterScreen"
         Name="mainwindow">
-
+    
     <Grid Background="#F5F5F5">
-        <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,25,0">
-                <TextBlock Text="Welcome:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <TextBlock Name="UserNameTextBlock" VerticalAlignment="Center" FontWeight="Bold"/>
-            </StackPanel>
-            <Label Content="Search" FontSize="12" FontWeight="Bold" Margin="77,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
-            <Button Height="30" CommandParameter="{x:Reference Name= mainwindow}" Command="{Binding ShowWindowCommand}"  Content="Add Coffee" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0" Click="AddCoffee_Click" />
-            <Button Height="30" CommandParameter="{x:Reference Name= mainwindow}" Command="{Binding ShowWindowCommand}"  Content="Log Out" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="702,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#E0E0E1" Click="LogOff_Click" />
-            <ListView Name="CoffeeList" ItemsSource="{Binding Coffee}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0" MouseDoubleClick="CoffeeList_MouseDoubleClick">
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Delete" Click="DeleteMenuItem_Click"/>
-                    </ContextMenu>
-                </ListView.ContextMenu>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Kind}" Header="Kind"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Volume}" Header="Volume"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Time}" Header="Time"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Date"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Location}" Header="Location"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
+        <!-- Main Container with Shadow -->
+        <Border Background="White" CornerRadius="10" Padding="20" Margin="25,40,25,15"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                BorderBrush="LightGray" BorderThickness="1">
+            
+            <Grid>
+                <!-- Top Bar with Welcome and Log Out -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,0,10">
+                    <TextBlock Text="Welcome:" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="16"/>
+                    <TextBlock Name="UserNameTextBlock" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
+                    <Button Height="35" Width="120" Content="Log Out" 
+                            Background="#0078D4" Foreground="White"
+                            FontWeight="Bold" Margin="20,0,0,0" 
+                            HorizontalAlignment="Right" Cursor="Hand"
+                            Click="LogOff_Click" BorderThickness="0"/>
+                </StackPanel>
+                
+                <!-- Search Bar -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,50,0,0">
+                    <Label Content="Search" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="30" Width="250" 
+                             VerticalAlignment="Center" HorizontalAlignment="Left" 
+                             BorderThickness="1" BorderBrush="#E0E0E0" Padding="5"/>
+                    <Button Height="30" Width="100" Content="Add Coffee" 
+                            Background="#0078D4" Foreground="White" 
+                            FontWeight="Bold" Margin="20,0,0,0"
+                            Cursor="Hand" BorderThickness="0" 
+                            Click="AddCoffee_Click"/>
+                </StackPanel>
 
+                <!-- Coffee List -->
+                <ListView Name="CoffeeList" ItemsSource="{Binding Coffee}" 
+                          Margin="0,100,0,0" BorderBrush="LightGray" 
+                          BorderThickness="1" Padding="5" MouseDoubleClick="CoffeeList_MouseDoubleClick">
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Delete" Click="DeleteMenuItem_Click"/>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Kind}" Header="Kind" Width="150"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Volume}" Header="Volume" Width="100"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Time}" Header="Time" Width="150"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Date" Width="150"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Location}" Header="Location" Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

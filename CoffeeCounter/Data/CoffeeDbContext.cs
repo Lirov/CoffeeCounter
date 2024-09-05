@@ -20,10 +20,12 @@ namespace CoffeeCounter.Data
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
-    // Replace with your actual connection string
-    optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CoffeeDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-
+     // Replace with your actual connection string
+     //optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CoffeeDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseMySql("Server=localhost;Port=3306;Database=CoffeeDB;User=root;",
+                new MySqlServerVersion(new Version(8, 0, 21)));  // Adjust version as per your MariaDB version
     }
+
 
     public class User
     {

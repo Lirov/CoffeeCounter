@@ -1,5 +1,6 @@
 ﻿using CoffeeCounter.ViewModel;
 using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -33,42 +34,45 @@ namespace CoffeeCounter.Views
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CoffeeDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            string connectionString = "Server=localhost;Database=CoffeeDB;User=root;Password=;";
 
-            try
+            //SqlConnection sqlConnection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CoffeeDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            using (MySqlConnection mySqlConnection = new MySqlConnection(connectionString))
             {
-                if (sqlConnection.State == ConnectionState.Closed)
+                try
                 {
-                    sqlConnection.Open();
-                    String query = "SELECT COUNT(1) FROM Users WHERE username=@username AND password=@password";
-                    SqlCommand cmd = new SqlCommand(query, sqlConnection);
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@username", UsernameTextBox.Text);
-                    cmd.Parameters.AddWithValue("@password", PasswordBox.Password);
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    if (count == 1)
+
+                    if (mySqlConnection.State == ConnectionState.Closed)
                     {
-                        LoggedInUserName = UsernameTextBox.Text;
-                        Main mainWindow = new Main();
-                        mainWindow.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Username or Password is incorrect");
+                        mySqlConnection.Open();
+                        String query = "SELECT COUNT(1) FROM Users WHERE username=@username AND password=@password";
+                        MySqlCommand cmd = new MySqlCommand(query, mySqlConnection);
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@username", UsernameTextBox.Text);
+                        cmd.Parameters.AddWithValue("@password", PasswordBox.Password);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        if (count == 1)
+                        {
+                            LoggedInUserName = UsernameTextBox.Text;
+                            Main mainWindow = new Main();
+                            mainWindow.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Username or Password is incorrect");
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
+                catch (Exception ex)
+                {
 
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                sqlConnection.Close();
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
+
+    
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
@@ -80,6 +84,23 @@ namespace CoffeeCounter.Views
         private string GetUserName()
         { 
             return LoggedInUserName;
+        }
+        private void UsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (UsernameTextBox.Text == "Username")
+            {
+                UsernameTextBox.Text = "";
+                UsernameTextBox.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void UsernameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(UsernameTextBox.Text))
+            {
+                UsernameTextBox.Text = "Username";
+                UsernameTextBox.Foreground = new SolidColorBrush(Colors.Gray);
+            }
         }
     }
 }

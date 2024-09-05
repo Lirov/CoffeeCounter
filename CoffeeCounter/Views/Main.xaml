@@ -7,14 +7,16 @@
         Title="Main" Height="650" Width="1000"
         WindowStartupLocation="CenterScreen"
         Name="mainwindow">
-    
+
     <Grid Background="#F5F5F5">
+
         <!-- Main Container with Shadow -->
         <Border Background="White" CornerRadius="10" Padding="20" Margin="25,40,25,15"
                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                 BorderBrush="LightGray" BorderThickness="1">
-            
+
             <Grid>
+                <Button Content="Open Paging Window" Width="160" Height="30" FontWeight="Bold" Command="{Binding OpenPagingWindowCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="454,50,0,0" Click="PagingButton_Click"/>
                 <!-- Top Bar with Welcome and Log Out -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,0,10">
                     <TextBlock Text="Welcome:" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="16"/>
@@ -25,7 +27,7 @@
                             HorizontalAlignment="Right" Cursor="Hand"
                             Click="LogOff_Click" BorderThickness="0"/>
                 </StackPanel>
-                
+
                 <!-- Search Bar -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,50,0,0">
                     <Label Content="Search" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>

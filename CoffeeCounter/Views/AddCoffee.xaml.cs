@@ -1,4 +1,5 @@
 ﻿using CoffeeCounter.Data;
+using CoffeeCounter.Model;
 using CoffeeCounter.ViewModel;
 using Microsoft.Data.SqlClient;
 using System;

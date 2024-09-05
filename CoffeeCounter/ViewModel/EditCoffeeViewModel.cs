@@ -1,5 +1,6 @@
 ﻿using CoffeeCounter.Commands;
 using CoffeeCounter.Data;
+using CoffeeCounter.Model;
 using CoffeeCounter.Views;
 using System;
 using System.Collections.Generic;

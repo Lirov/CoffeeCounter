@@ -59,13 +59,13 @@ namespace CoffeeCounter.Views
         }
         private bool FilterMethod(object obj)
         {
-            var coffee = (Data.Coffee)obj;
+            var coffee = (Coffee)obj;
 
             return coffee.Kind.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
         }
         private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var selectedCoffee = CoffeeList.SelectedItem as Data.Coffee;
+            var selectedCoffee = CoffeeList.SelectedItem as Coffee;
 
             if (selectedCoffee != null)
             {
@@ -90,15 +90,22 @@ namespace CoffeeCounter.Views
         }
         private void CoffeeList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selectedCoffee = CoffeeList.SelectedItem as Data.Coffee;
+            var selectedCoffee = CoffeeList.SelectedItem as Coffee;
             if (selectedCoffee != null)
             {
                 EditCoffee editWindow = new EditCoffee();
-                var viewModel = new EditCoffeeViewModel(new CoffeeDbContext(), selectedCoffee);
+                var viewModel = new EditCoffeeViewModel(new CoffeeDbContext(),selectedCoffee);
                 editWindow.DataContext = viewModel;
                 editWindow.ShowDialog(); // Use ShowDialog() to open the window as a modal
                 LoadCoffeeData();
             }
+        }
+
+        private void PagingButton_Click(object sender, RoutedEventArgs e)
+        {
+            Paging pagingWindow = new Paging();
+            pagingWindow.DataContext = new PagingViewModel();
+            pagingWindow.Show();
         }
 
     }

@@ -26,21 +26,4 @@ namespace CoffeeCounter.Data
                 new MySqlServerVersion(new Version(8, 0, 21)));  // Adjust version as per your MariaDB version
     }
 
-
-    public class User
-    {
-        public int UserId { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-    }
-    public class Coffee
-    {
-        public int Id { get; set; }
-        public string? Kind { get; set; }
-        public string? Volume { get; set; }
-        public string? Time { get; set; }
-        public string? Date { get; set; }
-        public string? Location { get; set; }
-    }
 }

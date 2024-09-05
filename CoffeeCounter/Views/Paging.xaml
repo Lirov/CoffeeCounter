@@ -10,8 +10,14 @@
         <!-- DataGrid to display coffee records -->
         <DataGrid ItemsSource="{Binding CoffeeRecords}" 
                   AutoGenerateColumns="True" 
-                  Margin="10,10,10,50"
-                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                  Margin="10,10,10,134" />
+
+        <TextBlock Text="Summary:" FontWeight="Bold" Margin="10,326,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Text="Total Cups:" Margin="10,347,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Text="{Binding TotalCups}" Margin="93,348,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <TextBlock Text="Total Volume (cc):" Margin="0,347,569,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <TextBlock Text="{Binding TotalVolume}" Margin="0,347,546,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
         <!-- Pagination Buttons -->
         <Button Content="Previous Month" Width="150" Height="30" Command="{Binding PreviousMonthCommand}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>

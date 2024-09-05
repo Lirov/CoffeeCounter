@@ -4,7 +4,9 @@ using CoffeeCounter.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,7 +14,7 @@ using System.Windows.Input;
 
 namespace CoffeeCounter.ViewModel
 {
-    public class PagingViewModel
+    public class PagingViewModel: INotifyPropertyChanged
     {
         public ObservableCollection<Coffee> CoffeeRecords { get; set; }
 
@@ -21,6 +23,29 @@ namespace CoffeeCounter.ViewModel
 
         public ICommand NextMonthCommand { get; set; }
         public ICommand PreviousMonthCommand { get; set; }
+
+        private int _totalCups;
+        public int TotalCups
+        {
+            get => _totalCups;
+            set
+            {
+                _totalCups = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _totalVolume;
+
+        public int TotalVolume
+        {
+            get => _totalVolume;
+            set
+            {
+                _totalVolume = value;
+                OnPropertyChanged();
+            }
+        }
 
         public PagingViewModel()
         {
@@ -41,14 +66,34 @@ namespace CoffeeCounter.ViewModel
                 // Extract month from string date and filter based on the month
                 var coffeeList = dbContext.Coffee
                     .AsEnumerable()  // Switch to client-side evaluation
-            .Where(c => GetMonthFromDateString(c.Date) == month)  // Filter by month on the client side
-            .ToList();
+                    .Where(c => GetMonthFromDateString(c.Date) == month)  // Filter by month on the client side
+                    .ToList();
 
                 CoffeeRecords.Clear();
-                foreach (var coffee in coffeeList)
+
+                if (coffeeList.Any())
                 {
-                    CoffeeRecords.Add(coffee);  // Add filtered records to ObservableCollection
+                    foreach (var coffee in coffeeList)
+                    {
+                        CoffeeRecords.Add(coffee);
+                    }
+
+                    TotalCups = coffeeList.Count;
+                    TotalVolume = coffeeList.Sum(c =>
+                    {
+                        if (int.TryParse(c.Volume, out int volume))
+                        {
+                            return volume;  // Return the parsed volume
+                        }
+                            return 0;      
+                    });
                 }
+                else
+                {
+                    TotalCups = 0;
+                    TotalVolume = 0;
+                }
+                OnPropertyChanged(nameof(CoffeeRecords));
             }
         }
         // Helper method to extract the month from a string date (format: dd/MM/yyyy)
@@ -88,6 +133,13 @@ namespace CoffeeCounter.ViewModel
         private bool CanGoPrevious(object obj)
         {
             return _currentMonth > 1;  // Only allow going to previous months if we're not on January
+        }
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

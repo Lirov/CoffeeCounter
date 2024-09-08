@@ -1,14 +1,9 @@
 ﻿using CoffeeCounter.Commands;
 using CoffeeCounter.Data;
 using CoffeeCounter.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -63,10 +58,9 @@ namespace CoffeeCounter.ViewModel
         {
             using (var dbContext = new CoffeeDbContext())
             {
-                // Extract month from string date and filter based on the month
                 var coffeeList = dbContext.Coffee
                     .AsEnumerable()  // Switch to client-side evaluation
-                    .Where(c => GetMonthFromDateString(c.Date) == month)  // Filter by month on the client side
+                    .Where(c => GetMonthFromDateString(c.Date) == month)  
                     .ToList();
 
                 CoffeeRecords.Clear();
@@ -83,7 +77,7 @@ namespace CoffeeCounter.ViewModel
                     {
                         if (int.TryParse(c.Volume, out int volume))
                         {
-                            return volume;  // Return the parsed volume
+                            return volume;  
                         }
                             return 0;      
                     });
@@ -96,7 +90,6 @@ namespace CoffeeCounter.ViewModel
                 OnPropertyChanged(nameof(CoffeeRecords));
             }
         }
-        // Helper method to extract the month from a string date (format: dd/MM/yyyy)
         private int GetMonthFromDateString(string dateString)
         {
             if (DateTime.TryParseExact(dateString, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
@@ -114,8 +107,7 @@ namespace CoffeeCounter.ViewModel
         {
             if (_currentMonth < 12)
             {
-                _currentMonth++;  // Move to the next month
-                MessageBox.Show($"Next Month: {_currentMonth}");  // Debugging
+                _currentMonth++; 
                 LoadCoffeeByMonth(_currentMonth);  // Load coffee records for the new month
             }
         }
@@ -124,9 +116,8 @@ namespace CoffeeCounter.ViewModel
         {
             if (_currentMonth > 1)
             {
-                _currentMonth--;  // Move to the previous month
-                MessageBox.Show($"Previous Month: {_currentMonth}");  // Debugging
-                LoadCoffeeByMonth(_currentMonth);  // Load coffee records for the previous month
+                _currentMonth--;  
+                LoadCoffeeByMonth(_currentMonth);  
             }
         }
 

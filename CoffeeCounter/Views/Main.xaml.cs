@@ -34,7 +34,7 @@ namespace CoffeeCounter.Views
         }
         public void LoadCoffeeData()
         {
-            // This method should reload the coffee data from the database
+            // Reload the coffee data from the database
             using (var dbContext = new CoffeeDbContext())
             {
                 CoffeeList.ItemsSource = dbContext.Coffee.ToList();
@@ -82,8 +82,6 @@ namespace CoffeeCounter.Views
                             dbContext.SaveChanges();
                         }
                     }
-
-                    // Refresh the data
                     LoadCoffeeData();
                 }
             }

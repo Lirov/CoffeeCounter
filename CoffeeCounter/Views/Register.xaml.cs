@@ -29,6 +29,8 @@ namespace CoffeeCounter.Views
             this.DataContext = viewModel;
         }
 
+        // code for registering a new user with Local SQL Server
+
         //private void RegisterButton_Click(object sender, RoutedEventArgs e)
         //{
         //    try
@@ -79,7 +81,6 @@ namespace CoffeeCounter.Views
                 UsernameTextBox.Text = "";
                 PasswordBox.Password = "";
 
-                // Open the main window
                 Main main = new Main();
                 this.Close();
                 main.Show();
